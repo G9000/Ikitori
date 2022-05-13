@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import AvatarWithDropdownVue from "@/components/AvatarWithDropdown.vue";
-import Button from "@/components/primitives/Button.vue";
+import Searchbar from "@/components/Searchbar.vue";
+import Button from "@//primitives/Button.vue";
 
 type userType = {
   name: string;
@@ -12,10 +13,16 @@ interface propsType {
 }
 
 defineProps<propsType>();
+const emit = defineEmits(["searchState", "searchInput"]);
 </script>
 
 <template>
-  <div>
+  <div class="w-full flex justify-between">
+    <Searchbar
+      @searchState="emit('searchState')"
+      @searchInput="emit('searchInput')"
+      class="w-[375px]"
+    />
     <div v-if="currentUser" class="flex gap-x-4 items-center rounded-full">
       <AvatarWithDropdownVue :imgSrc="currentUser?.avatar" />
       <span class="text-gray-500 font-semibold">

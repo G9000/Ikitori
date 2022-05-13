@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import Button from "@/primitives/Button.vue";
 import ProductCard from "@/components/ProductCard.vue";
 import ProductCardError from "@/components/ProductCardError.vue";
 import useFetch from "@/utils/useFetch";
@@ -20,11 +21,7 @@ products.value = await useFetch(import.meta.env.VITE_URL as string, {
       <ProductCardError v-else :error="products.error" />
     </div>
     <div class="flex justify-center mt-20">
-      <button
-        class="py-2 px-4 bg-teal-800 text-zinc-50 rounded-md hover:ring-4 hover:ring-teal-600 hover:ring-opacity-25"
-      >
-        Load more
-      </button>
+      <Button type="solid" size="base">Load more</Button>
     </div>
   </section>
 </template>

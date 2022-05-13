@@ -3,7 +3,7 @@ interface propsType {
   iconName: string;
   width: number;
   height: number;
-  iconColor: string;
+  iconColor?: string;
 }
 
 withDefaults(defineProps<propsType>(), {

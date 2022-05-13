@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { provide, ref } from "vue";
 import { RouterView } from "vue-router";
-import Layout from "@/components/Layout.vue";
+import Layout from "@/layouts/MainLayout.vue";
 
 const mockUser = {
   name: "Pepega",
@@ -14,17 +14,7 @@ provide("currentUser", currentUser.value);
 </script>
 
 <template>
-  <!-- <header>
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header> -->
-  <div>
-    <Layout>
-      <router-view />
-    </Layout>
-  </div>
+  <Layout>
+    <router-view />
+  </Layout>
 </template>

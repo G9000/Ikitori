@@ -13,7 +13,7 @@ import ProductsGrid from "@/components/ProductsGrid.vue";
   <main
     role="main"
     aria-labelledby="product-section"
-    class="px-4 laptop:px-10 pt-4 pb-20"
+    class="px-2 laptop:px-10 pt-4 pb-20"
   >
     <div class="text-2xl text-gray-500 divide-y">Products</div>
     <div class="w-full border-t border-gray-300 mt-2 border-opacity-60"></div>

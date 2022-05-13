@@ -8,10 +8,10 @@ import {
   GlobeAltIcon,
   TranslateIcon,
 } from "@heroicons/vue/solid";
-import Icon from "@/components/primitives/Icon.vue";
-import Button from "@/components/primitives/Button.vue";
-import GoogleIcon from "@/components/icons/IconGoogle.vue";
-import Avatar from "@/components/primitives/Avatar.vue";
+import Icon from "@/primitives/Icon.vue";
+import Button from "@/primitives/Button.vue";
+import GoogleIcon from "@/icons/IconGoogle.vue";
+import Avatar from "@/primitives/Avatar.vue";
 
 type userType = {
   name: string;
@@ -36,9 +36,9 @@ defineProps<propsType>();
       >
         <div class="flex gap-x-4 items-center">
           <Avatar :imgSrc="currentUser?.avatar" />
-          <span class="font-semibold text-gray-600">{{
-            currentUser?.name
-          }}</span>
+          <span class="font-semibold text-gray-600">
+            {{ currentUser?.name }}
+          </span>
         </div>
         <div class="flex gap-x-2">
           <Button type="ghost" size="sm">

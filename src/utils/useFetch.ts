@@ -2,7 +2,6 @@ export default async function useFetch(url: string, config: any) {
   try {
     const result = await fetch(url, config);
     const data = await result.json();
-    console.log("data", data);
     if (result.status === 200) {
       return { response: data, error: null };
     } else {
@@ -11,6 +10,6 @@ export default async function useFetch(url: string, config: any) {
   } catch (err) {
     throw new Error("Something went wrong");
   } finally {
-    console.log("done");
+    console.log("data fetched");
   }
 }

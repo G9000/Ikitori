@@ -4,7 +4,7 @@ import { ExclamationIcon } from "@heroicons/vue/solid";
 interface propsType {
   error?: string;
 }
-const props = defineProps<propsType>();
+defineProps<propsType>();
 </script>
 
 <template>
@@ -15,9 +15,9 @@ const props = defineProps<propsType>();
           class="w-full h-[180px] object-cover object-center bg-gray-100 flex flex-col items-center justify-center gap-y-4"
         >
           <ExclamationIcon class="h-6" />
-          <span class="text-sm text-gray-400">{{
-            props.error ? props.error : "Something went wrong"
-          }}</span>
+          <span class="text-sm text-gray-400">
+            {{ error ? error : "Something went wrong" }}</span
+          >
         </div>
       </div>
       <span class="bg-gray-100 mt-2 h-4" />

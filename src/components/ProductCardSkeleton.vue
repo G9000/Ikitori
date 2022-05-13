@@ -1,5 +1,3 @@
-<script setup lang="ts"></script>
-
 <template>
   <template v-for="idx in 15" :key="idx">
     <div class="flex flex-col group animate-pulse">
