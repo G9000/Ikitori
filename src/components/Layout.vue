@@ -58,7 +58,7 @@ function changeSearchState() {
 
     <div v-else class="px-4 tablet:px-6 py-4">
       <div class="flex justify-between gap-x-6">
-        <div class="z-50 text-teal-800 text-3xl font-bold">Ikitori</div>
+        <a href="/" class="z-50 text-teal-800 text-3xl font-bold">Ikitori</a>
         <Searchbar
           v-if="width > layoutScreen.mobilePro"
           @searchState="changeSearchState"

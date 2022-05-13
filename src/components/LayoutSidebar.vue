@@ -16,11 +16,12 @@ const { width } = useWindowSize();
       v-if="width > 768"
       class="h-screen w-[250px] flex flex-col border-r border-gray-500 border-opacity-20 bg-teal-100 bg-opacity-10 sticky left-0 top-0"
     >
-      <div
+      <a
+        href="/"
         class="h-[75px] text-white bg-teal-900 text-4xl font-bold flex px-6 items-center border-b border-gray-500 border-opacity-20"
       >
         Ikitori
-      </div>
+      </a>
       <div class="mt-10">
         <ul class="flex flex-col gap-y-4 text-gray-500">
           <a
