@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import { ref, inject } from "vue";
+import { inject } from "vue";
 import { useWindowSize } from "@vueuse/core";
-import { layoutScreen } from "@/utils/breakpoints";
+import { layoutScreen } from "@/composables/useBreakpoints";
 import Sidebar from "@/layouts/MainLayoutSidebar.vue";
 import NavbarDesktop from "@/layouts/MainLayoutNavbar.vue";
 import NavbarMobile from "@/layouts/MainLayoutNavbarMobile.vue";
 import NavbarMobileContent from "@/layouts/MainLayoutNavbarMobileContent.vue";
 import { Dialog as Modal, DialogPanel as Content } from "@headlessui/vue";
+import { storeToRefs } from "pinia";
+import { useMobileNavMenuState } from "@/stores/mobileNavMenuState";
 
 const currentUser = inject("currentUser");
 const { width } = useWindowSize();
@@ -21,18 +23,16 @@ interface propsType {
 }
 
 defineProps<propsType>();
-const mobileNavOpen = ref<boolean>(false);
-const isSearching = ref<boolean>(false);
 
-async function searchInput(value: string) {
-  if (value.length > 0) {
-    isSearching.value = true;
-  } else isSearching.value = false;
-}
+const mobileMenuNavStore = useMobileNavMenuState();
+const { isMobileMenuOpen } = storeToRefs(mobileMenuNavStore);
 
-function changeSearchState() {
-  isSearching.value = false;
-}
+// async function searchInput(value: string) {
+//   console.log("value", value);
+//   if (value.length > 0) {
+//     searchbarStore.setSearchbarState(true);
+//   } else searchbarStore.setSearchbarState(false);
+// }
 </script>
 
 <template>
@@ -44,11 +44,7 @@ function changeSearchState() {
         <div
           class="h-[75px] w-full flex px-10 gap-x-4 justify-between items-center border-b border-gray-500 border-opacity-20 sticky top-0 z-50 bg-white"
         >
-          <NavbarDesktop
-            :currentUser="currentUser"
-            @searchState="changeSearchState"
-            @searchInput="searchInput"
-          />
+          <NavbarDesktop :currentUser="currentUser" />
         </div>
         <slot />
       </div>
@@ -56,17 +52,11 @@ function changeSearchState() {
 
     <!-- Mobile -->
     <div v-else class="px-4 tablet:px-6 py-4">
-      <NavbarMobile
-        :isSearching="isSearching"
-        :isMobileNavOpen="mobileNavOpen"
-        @searchState="changeSearchState"
-        @searchInput="searchInput"
-        @menuClick="mobileNavOpen = !mobileNavOpen"
-      />
+      <NavbarMobile />
       <slot v-if="width < layoutScreen.laptop" />
     </div>
 
-    <Modal :open="mobileNavOpen">
+    <Modal :open="isMobileMenuOpen">
       <Content>
         <NavbarMobileContent :currentUser="currentUser" />
       </Content>

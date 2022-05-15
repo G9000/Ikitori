@@ -3,7 +3,10 @@ export default async function useFetch(url: string, config: any) {
     const result = await fetch(url, config);
     const data = await result.json();
     if (result.status === 200) {
-      return { response: data, error: null };
+      return {
+        response: data,
+        error: null,
+      };
     } else {
       return { response: null, error: data.message };
     }

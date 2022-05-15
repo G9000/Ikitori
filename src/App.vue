@@ -3,6 +3,15 @@ import { provide, ref } from "vue";
 import { RouterView } from "vue-router";
 import Layout from "@/layouts/MainLayout.vue";
 
+console.log(
+  "%cWelcome to Ikitori",
+  "background: #134e4a; color: white; font-size: 24px"
+);
+console.log(
+  "%cMade by Julio Caesar, https://juliocaesar.co",
+  "background: #134e4a; color: white; font-size: 14px"
+);
+
 const mockUser = {
   name: "Pepega",
   avatar: "https://miro.medium.com/max/1400/1*1yjbmb_mTngFxZ5qA3RLOw.jpeg",
@@ -10,7 +19,10 @@ const mockUser = {
 
 // const mockUser = null;
 const currentUser = ref(mockUser);
+
 provide("currentUser", currentUser.value);
+provide("apiUrl", import.meta.env.VITE_URL as string);
+provide("apiSecretKey", import.meta.env.VITE_SECRET_KEY as string);
 </script>
 
 <template>

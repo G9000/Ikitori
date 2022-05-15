@@ -1,15 +1,24 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, inject } from "vue";
 import Button from "@/primitives/Button.vue";
 import ProductCard from "@/components/ProductCard.vue";
 import ProductCardError from "@/components/ProductCardError.vue";
-import useFetch from "@/utils/useFetch";
+import useFetch from "@/composables/useFetch";
+import { storeToRefs } from "pinia";
+import { useProductListState } from "@/stores/productListState";
 
+const productListStore = useProductListState();
+const { productList } = storeToRefs(productListStore);
 const products = ref();
+const url = inject("apiUrl") as string;
+const apiKey = inject("apiSecretKey") as string;
 
-products.value = await useFetch(import.meta.env.VITE_URL as string, {
-  headers: { "secret-key": import.meta.env.VITE_SECRET_KEY as string },
-});
+if (!productList.value) {
+  products.value = await useFetch(url, {
+    headers: { "secret-key": apiKey },
+  });
+  productListStore.setProductList(products.value);
+} else products.value = productList.value;
 </script>
 
 <template>

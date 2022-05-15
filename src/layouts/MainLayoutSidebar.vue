@@ -30,15 +30,15 @@ const router = useRouter();
         <ShoppingBagIcon class="h-6 group-hover:text-teal-800" />
         <span class="tracking-wide">Pots & plants</span>
       </a>
-      <a @click="router.push('/home-decor')" class="navlink group">
+      <a @click="router.push('/')" class="navlink group">
         <HomeIcon class="h-6 group-hover:text-teal-800" />
         <span class="tracking-wide">Home decor</span>
       </a>
-      <a @click="router.push('/deals')" class="navlink group">
+      <a @click="router.push('/')" class="navlink group">
         <TagIcon class="h-6 group-hover:text-teal-800" />
         <span class="tracking-wide">Deals</span>
       </a>
-      <a @click="router.push('/summers-collection')" class="navlink group">
+      <a @click="router.push('/')" class="navlink group">
         <GiftIcon class="h-6 group-hover:text-teal-800" />
         <span class="tracking-wide">Summers collection</span>
       </a>
