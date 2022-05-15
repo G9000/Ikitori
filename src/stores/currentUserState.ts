@@ -10,7 +10,7 @@ export const useCurrentUserState = defineStore("currentUserState", {
     currentUser: undefined as userType | undefined,
   }),
   actions: {
-    setCurrentUser(userData: userType) {
+    setCurrentUser(userData: userType | undefined) {
       this.currentUser = userData;
     },
     removeCurrentUser() {

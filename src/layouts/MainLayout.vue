@@ -15,9 +15,13 @@ const { width } = useWindowSize();
 const mobileMenuNavStore = useMobileNavMenuState();
 const { isMobileMenuOpen } = storeToRefs(mobileMenuNavStore);
 
+type mockUser = {
+  name: string;
+  avatar: string;
+};
 const currentUserStore = useCurrentUserState();
 const { currentUser } = storeToRefs(currentUserStore);
-const mockUser = inject("mockUser");
+const mockUser = inject<mockUser>("mockUser");
 
 function signin() {
   currentUserStore.setCurrentUser(mockUser);

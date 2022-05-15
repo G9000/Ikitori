@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { provide, ref, computed } from "vue";
+import { provide } from "vue";
 import { RouterView } from "vue-router";
 import Layout from "@/layouts/MainLayout.vue";
+import type { InjectionKey } from "vue";
 
 console.log(
   "%cWelcome to Ikitori",
@@ -16,7 +17,12 @@ const mockUser = {
   name: "Pepega Masta",
   avatar: "https://miro.medium.com/max/1400/1*1yjbmb_mTngFxZ5qA3RLOw.jpeg",
 };
-provide("mockUser", mockUser);
+
+type mockUser = {
+  name: string;
+  avatar: string;
+};
+provide("mockUser", mockUser as mockUser);
 provide("apiUrl", import.meta.env.VITE_URL as string);
 provide("apiSecretKey", import.meta.env.VITE_SECRET_KEY as string);
 </script>
