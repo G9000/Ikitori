@@ -22,6 +22,8 @@ interface propsType {
   currentUser?: userType | null;
 }
 defineProps<propsType>();
+
+const emit = defineEmits(["signIn", "logout"]);
 </script>
 
 <template>
@@ -44,7 +46,9 @@ defineProps<propsType>();
           <Button type="ghost" size="sm">
             <CogIcon slot="default" class="h-6" />
           </Button>
-          <Button type="ghost" size="sm"> Logout </Button>
+          <Button type="ghost" size="sm" @click="emit('logout')">
+            Logout
+          </Button>
         </div>
       </div>
       <div v-else class="mt-12 py-4 gap-y-4">
@@ -54,10 +58,20 @@ defineProps<propsType>();
           members now. <a href="/" class="underline"> Register</a>
         </span>
         <div class="flex flex-wrap gap-4 mt-4">
-          <Button color="primary" type="ghost" size="sm">
+          <Button
+            color="primary"
+            type="ghost"
+            size="sm"
+            @click="emit('signIn')"
+          >
             Sign in with email
           </Button>
-          <Button color="primary" type="ghost" size="sm">
+          <Button
+            color="primary"
+            type="ghost"
+            size="sm"
+            @click="emit('signIn')"
+          >
             <Icon
               slot="append"
               :width="24"

@@ -8,6 +8,8 @@ interface propsType {
 }
 
 defineProps<propsType>();
+
+const emit = defineEmits(["logout"]);
 </script>
 
 <template>
@@ -48,6 +50,7 @@ defineProps<propsType>();
                 active ? 'bg-teal-800 text-white' : 'text-gray-500',
                 'group flex w-full items-center rounded-md px-2 py-2 text-sm',
               ]"
+              @click="emit('logout')"
             >
               <LogoutIcon class="h-6 mr-2" />
               Logout

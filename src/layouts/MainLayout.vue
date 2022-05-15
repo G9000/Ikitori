@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { inject } from "vue";
+import { inject, watchEffect, ref, computed, watch } from "vue";
 import { useWindowSize } from "@vueuse/core";
 import { layoutScreen } from "@/composables/useBreakpoints";
 import Sidebar from "@/layouts/MainLayoutSidebar.vue";
@@ -9,30 +9,23 @@ import NavbarMobileContent from "@/layouts/MainLayoutNavbarMobileContent.vue";
 import { Dialog as Modal, DialogPanel as Content } from "@headlessui/vue";
 import { storeToRefs } from "pinia";
 import { useMobileNavMenuState } from "@/stores/mobileNavMenuState";
+import { useCurrentUserState } from "@/stores/currentUserState";
 
-const currentUser = inject("currentUser");
 const { width } = useWindowSize();
-
-type userType = {
-  name: string;
-  avatar?: string;
-};
-
-interface propsType {
-  currentUser?: userType | null;
-}
-
-defineProps<propsType>();
-
 const mobileMenuNavStore = useMobileNavMenuState();
 const { isMobileMenuOpen } = storeToRefs(mobileMenuNavStore);
 
-// async function searchInput(value: string) {
-//   console.log("value", value);
-//   if (value.length > 0) {
-//     searchbarStore.setSearchbarState(true);
-//   } else searchbarStore.setSearchbarState(false);
-// }
+const currentUserStore = useCurrentUserState();
+const { currentUser } = storeToRefs(currentUserStore);
+const mockUser = inject("mockUser");
+
+function signin() {
+  currentUserStore.setCurrentUser(mockUser);
+}
+
+function logout() {
+  currentUserStore.removeCurrentUser();
+}
 </script>
 
 <template>
@@ -44,7 +37,11 @@ const { isMobileMenuOpen } = storeToRefs(mobileMenuNavStore);
         <div
           class="h-[75px] w-full flex px-10 gap-x-4 justify-between items-center border-b border-gray-500 border-opacity-20 sticky top-0 z-50 bg-white"
         >
-          <NavbarDesktop :currentUser="currentUser" />
+          <NavbarDesktop
+            :currentUser="currentUser"
+            @signIn="signin()"
+            @logout="logout()"
+          />
         </div>
         <slot />
       </div>
@@ -58,7 +55,11 @@ const { isMobileMenuOpen } = storeToRefs(mobileMenuNavStore);
 
     <Modal :open="isMobileMenuOpen">
       <Content>
-        <NavbarMobileContent :currentUser="currentUser" />
+        <NavbarMobileContent
+          :currentUser="currentUser"
+          @signIn="signin()"
+          @logout="logout()"
+        />
       </Content>
     </Modal>
   </div>
